@@ -47,11 +47,12 @@
         private $cognome;
         private $dataNascita;
 
-        public function __construct($nome, $cognome)
+        public function __construct($nome, $cognome, $dataNascita)
         {
 
             $this->nome = $nome;
             $this->cognome = $cognome;
+            $this->dataNascita = $dataNascita;
         }
 
         public function getNome()
@@ -87,7 +88,7 @@
 
         public function printFullPerson()
         {
-            return $this->getNome() . " " . $this->getCognome() . ": " . $this->getData();
+            return $this->getNome() . " " . $this->getCognome() . "<br> Data di Nascita: " . $this->getData();
         }
 
 
@@ -105,11 +106,12 @@
         private $stipendio;
         private $dataAssunzione;
 
-        public function __construct($nome, $cognome, $stipendio)
+        public function __construct($nome, $cognome, $dataNascita, $stipendio, $dataAssunzione)
         {
 
-            parent::__construct($nome, $cognome);
+            parent::__construct($nome, $cognome, $dataNascita);
             $this->stipendio = $stipendio;
+            $this->dataAssunzione = $dataAssunzione;
         }
 
         public function getStipendio()
@@ -135,33 +137,33 @@
             $this->dataAssunzione;
         }
 
+        public function printFullEmployee()
+        {
+            return parent::printFullPerson() . " " . "<br>" . "Stipendio: " . $this->getStipendio()
+                . "<br>Data di Assunzione ( " . $this->getDataAssunzione() . " )";
+        }
+
         public function __toString()
         {
 
 
-            return  parent::printFullPerson() . $this->getStipendio()
-                . " ( " . $this->getDataAssunzione() . " )";
+            return $this->printFullEmployee();
         }
     }
 
-    $p1 = new Persona("Nome", "Cognome",);
+    $p1 = new Persona("Pinco", "Pallo", "20/07/1970");
 
-    $p1->setNome("Pinco");
-    $p1->setCognome("Pallo");
     $p1->setData("29/07/1970");
 
-    echo "Persona:<br>" . $p1;
+    echo "<h4>Persona:</h4><br>" . $p1;
 
     echo "<br><br>------------------<br><br>";
 
-    $e1 = new Employee("Nome", "Cognome", "Stipendio");
-
-    $e1->setNome("Pinco");
-    $e1->setCognome("Pallo");
-    $e1->setStipendio("1200");
+    $e1 = new Employee("Pinco", "Pallo", "20/07/1970", "1300$", "11/01/2019");
 
 
-    echo "Employee:<br>" . $e1;
+
+    echo "<h4>Employee:</h4><br>" . $e1;
 
     ?>
 
